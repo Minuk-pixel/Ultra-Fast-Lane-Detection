@@ -87,7 +87,7 @@ def generate_segmentation_and_train_list(root, line_txt, names):
         k_pos.sort()
 
         label_path = names[i][:-3]+'png'
-        label = np.zeros((720,1280),dtype=np.uint8)
+        label = np.zeros((480, 640),dtype=np.uint8)
         bin_label = [0,0,0,0]
         if len(k_neg) == 1:                                           # for only one lane in the left
             which_lane = np.where(ks == k_neg[0])[0][0]
@@ -142,14 +142,14 @@ if __name__ == "__main__":
     args = get_args().parse_args()
 
     # training set
-    names,line_txt = get_tusimple_list(args.root,  ['label_data_0601.json','label_data_0531.json','label_data_0313.json'])
+    names,line_txt = get_tusimple_list(args.root, ['tusimple_train.json'])
     # generate segmentation and training list for training
     generate_segmentation_and_train_list(args.root, line_txt, names)
 
-    # testing set
-    names,line_txt = get_tusimple_list(args.root, ['test_tasks_0627.json'])
-    # generate testing set for testing
-    with open(os.path.join(args.root,'test.txt'),'w') as fp:
-        for name in names:
-            fp.write(name + '\n')
+    # # testing set
+    # names,line_txt = get_tusimple_list(args.root, ['test_tasks_0627.json'])
+    # # generate testing set for testing
+    # with open(os.path.join(args.root,'test.txt'),'w') as fp:
+    #     for name in names:
+    #         fp.write(name + '\n')
 
