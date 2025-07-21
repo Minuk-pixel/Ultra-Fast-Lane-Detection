@@ -19,7 +19,7 @@ warmup_iters = 100
 
 # NETWORK
 backbone = '18'
-griding_num = 100
+griding_num = 80
 use_aux = True
 
 # LOSS
